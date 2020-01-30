@@ -1,11 +1,13 @@
 #ifndef FRACTION_H
 # define FRACTION_H
 
-#include <iostream>
+# include <iostream>
 
-int		pgcd(int a, int b);
+void			swap(int &a, int &b);
+int				gcd(int a, int b);
+int				lcm(int a, int b);
 
-class	Fraction
+class			Fraction
 {
 	public:
 
@@ -13,9 +15,14 @@ class	Fraction
 	Fraction(const int &numerator, const int &denominator = 1);
 	~Fraction(void);
 
-	void		display(std::ostream &stream) const;
-	bool		is_equal(const Fraction &b) const;
-	bool		is_lower(const Fraction &b) const;
+	void		print(std::ostream &stream) const;
+	bool		eq(const Fraction &b) const;
+	bool		lt(const Fraction &b) const;
+	int			get_numerator(void) const;
+	int			get_denominator(void) const;
+
+	void		to_opposite(void);
+	void		to_inverse(void);
 
 	Fraction	&operator+=(const Fraction &b);
 	Fraction	&operator-=(const Fraction &b);
@@ -26,10 +33,13 @@ class	Fraction
 
 	int			m_numerator;
 	int			m_denominator;
+
+	void		simplify(void);
 };
 
 std::ostream	&operator<<(std::ostream &stream, const Fraction &a);
 bool			operator==(const Fraction &a, const Fraction &b);
+bool			operator!=(const Fraction &a, const Fraction &b);
 bool			operator<(const Fraction &a, const Fraction &b);
 bool			operator>(const Fraction &a, const Fraction &b);
 bool			operator<=(const Fraction &a, const Fraction &b);
