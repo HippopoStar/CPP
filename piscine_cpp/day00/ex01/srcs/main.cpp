@@ -2,8 +2,21 @@
 
 int		main(void)
 {
+	std::string	s;
 	PhoneBook	annuaire;
 
-	annuaire.add();
+	do
+	{
+		std::getline(std::cin, s);
+		if (s == "ADD")
+		{
+			annuaire.add();
+		}
+		else if (s == "SEARCH")
+		{
+			annuaire.search();
+		}
+	}
+	while (!(s == "EXIT"));
 	return (0);
 }

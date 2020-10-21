@@ -18,7 +18,7 @@ HEAD = ./includes/PhoneBook.hpp \
 
 CC =		g++
 
-NAME = lame_phonebook
+NAME = worthless_phonebook
 
 SRC_PATH = ./srcs
 

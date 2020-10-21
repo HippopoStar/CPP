@@ -15,7 +15,10 @@ class	PhoneBook
 
 	private:
 
-	Contact		contact_list[8];
+	Contact		_contact_list[8];
+
+	void		_summary(void) const;
+	size_t		_query_index(void) const;
 };
 
 #endif

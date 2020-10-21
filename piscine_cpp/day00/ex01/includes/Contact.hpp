@@ -12,18 +12,20 @@ class	Contact
 		~Contact(void);
 
 		void	create_contact(void);
+		bool	is_empty(void) const;
+		void	display(void) const;
 
 		bool	set_first_name(const std::string &first_name);
 		bool	set_last_name(const std::string &last_name);
 		bool	set_nickname(const std::string &nickname);
-		bool	set_login(const std::string &login);
-		bool	set_postal_address(const std::string &postal_address);
-		bool	set_email_address(const std::string &email_address);
-		bool	set_phone_number(const std::string &phone_number);
-		bool	set_birthday_date(const std::string &birthday_date);
-		bool	set_favourite_meal(const std::string &favourite_meal);
-		bool	set_underwear_color(const std::string &underwear_color);
-		bool	set_darkest_secret(const std::string &darkest_secret);
+		void	set_login(const std::string &login);
+		void	set_postal_address(const std::string &postal_address);
+		void	set_email_address(const std::string &email_address);
+		void	set_phone_number(const std::string &phone_number);
+		void	set_birthday_date(const std::string &birthday_date);
+		void	set_favourite_meal(const std::string &favourite_meal);
+		void	set_underwear_color(const std::string &underwear_color);
+		void	set_darkest_secret(const std::string &darkest_secret);
 
 		std::string	get_first_name(void) const;
 		std::string	get_last_name(void) const;
@@ -52,11 +54,8 @@ class	Contact
 		std::string	_darkest_secret;
 
 
-		void		_error_empty_field(void) const;
-/*
-**		bool		_check_empty_string(const std::string &s) const;
-*/
-		std::string	_query_field(const char *field, bool (*f)(const std::string&));
+		bool		_check_empty_string(const std::string &s) const;
+		std::string	_query_field(const char *field, bool (Contact::*f)(const std::string&) const);
 
 };
 

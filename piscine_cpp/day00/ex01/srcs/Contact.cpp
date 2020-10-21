@@ -1,10 +1,4 @@
 #include "Contact.hpp"
-#include <functional>
-
-static bool		check_empty_string(const std::string &s)
-{
-	return (s.length() == 0 ? false : true);
-}
 
 /*
  * Constructor(s) & Destructor(s)
@@ -12,6 +6,17 @@ static bool		check_empty_string(const std::string &s)
 
 Contact::Contact(void)
 {
+	(*this)._first_name = "";
+	(*this)._last_name = "";
+	(*this)._nickname = "";
+	(*this)._login = "";
+	(*this)._postal_address = "";
+	(*this)._email_address = "";
+	(*this)._phone_number = "";
+	(*this)._birthday_date = "";
+	(*this)._favourite_meal = "";
+	(*this)._underwear_color = "";
+	(*this)._darkest_secret = "";
 }
 
 Contact::~Contact(void)
@@ -22,19 +27,17 @@ Contact::~Contact(void)
  * Private method(s)
  */
 
-void		Contact::_error_empty_field(void) const
+bool		Contact::_check_empty_string(const std::string &s) const
 {
-	std::cout << "-field can not be empty-" << std::endl;
+	if (s.length() == 0)
+	{
+		std::cout << "-field can not be empty-" << std::endl;
+		return (false);
+	}
+	return (true);
 }
 
-/*
-**bool		Contact::_check_empty_string(const std::string &s) const
-**{
-**	return (s.length() == 0 ? false : true);
-**}
-*/
-
-std::string	Contact::_query_field(const char *field, bool (*f)(const std::string&))
+std::string	Contact::_query_field(const char *field, bool (Contact::*f)(const std::string&) const)
 {
 	std::string	input;
 
@@ -43,7 +46,7 @@ std::string	Contact::_query_field(const char *field, bool (*f)(const std::string
 		std::cout << field << ": ";
 		std::getline(std::cin, input);
 	}
-	while (!(f == NULL) && f(input) == false);
+	while (!(f == NULL) && ((*this).*f)(input) == false);
 	return (input);
 }
 
@@ -53,30 +56,39 @@ std::string	Contact::_query_field(const char *field, bool (*f)(const std::string
 
 void		Contact::create_contact(void)
 {
-	(*this).set_first_name((*this)._query_field("First name", check_empty_string));
-	(*this).set_last_name((*this)._query_field("Last name", check_empty_string));
-	(*this).set_nickname((*this)._query_field("Nickname", check_empty_string));
-	(*this).set_login((*this)._query_field("Login", check_empty_string));
-	(*this).set_postal_address((*this)._query_field("Postal address", check_empty_string));
-	(*this).set_email_address((*this)._query_field("Email address", check_empty_string));
-	(*this).set_phone_number((*this)._query_field("Phone number", check_empty_string));
-	(*this).set_birthday_date((*this)._query_field("Birthday date", check_empty_string));
-	(*this).set_favourite_meal((*this)._query_field("Favourite meal", check_empty_string));
-	(*this).set_underwear_color((*this)._query_field("Underwear color", check_empty_string));
-	(*this).set_darkest_secret((*this)._query_field("Darkest color", check_empty_string));
-/*
-**	(*this).set_first_name((*this)._query_field("First name", (*this)._check_empty_string));
-**	(*this).set_last_name((*this)._query_field("Last name", (*this)._check_empty_string));
-**	(*this).set_nickname((*this)._query_field("Nickname", (*this)._check_empty_string));
-**	(*this).set_login((*this)._query_field("Login", (*this)._check_empty_string));
-**	(*this).set_postal_address((*this)._query_field("Postal address", (*this)._check_empty_string));
-**	(*this).set_email_address((*this)._query_field("Email address", (*this)._check_empty_string));
-**	(*this).set_phone_number((*this)._query_field("Phone number", (*this)._check_empty_string));
-**	(*this).set_birthday_date((*this)._query_field("Birthday date", (*this)._check_empty_string));
-**	(*this).set_favourite_meal((*this)._query_field("Favourite meal", (*this)._check_empty_string));
-**	(*this).set_underwear_color((*this)._query_field("Underwear color", (*this)._check_empty_string));
-**	(*this).set_darkest_secret((*this)._query_field("Darkest color", (*this)._check_empty_string));
-*/
+	(*this).set_first_name((*this)._query_field("First name", &Contact::_check_empty_string));
+	(*this).set_last_name((*this)._query_field("Last name", &Contact::_check_empty_string));
+	(*this).set_nickname((*this)._query_field("Nickname", &Contact::_check_empty_string));
+	(*this).set_login((*this)._query_field("Login", NULL));
+	(*this).set_postal_address((*this)._query_field("Postal address", NULL));
+	(*this).set_email_address((*this)._query_field("Email address", NULL));
+	(*this).set_phone_number((*this)._query_field("Phone number", NULL));
+	(*this).set_birthday_date((*this)._query_field("Birthday date", NULL));
+	(*this).set_favourite_meal((*this)._query_field("Favourite meal", NULL));
+	(*this).set_underwear_color((*this)._query_field("Underwear color", NULL));
+	(*this).set_darkest_secret((*this)._query_field("Darkest color", NULL));
+}
+
+bool		Contact::is_empty(void) const
+{
+	return ((*this)._first_name.length() > 0
+			&& (*this)._last_name.length() > 0
+			&& (*this)._nickname.length() > 0 ? false : true);
+}
+
+void		Contact::display(void) const
+{
+	std::cout << "First name: " << (*this)._first_name << std::endl;
+	std::cout << "Last name: " << (*this)._last_name << std::endl;
+	std::cout << "Nickname: " << (*this)._nickname << std::endl;
+	std::cout << "Login: " << (*this)._login << std::endl;
+	std::cout << "Postal address: " << (*this)._postal_address << std::endl;
+	std::cout << "Email address: " << (*this)._email_address << std::endl;
+	std::cout << "Phone number: " << (*this)._phone_number << std::endl;
+	std::cout << "Birthday date: " << (*this)._birthday_date << std::endl;
+	std::cout << "Favourite meal: " << (*this)._favourite_meal << std::endl;
+	std::cout << "Underwear color: " << (*this)._underwear_color << std::endl;
+	std::cout << "Darkest secret: " << (*this)._darkest_secret << std::endl;
 }
 
 /**
@@ -87,7 +99,6 @@ bool		Contact::set_first_name(const std::string &first_name)
 {
 	if (first_name.length() == 0)
 	{
-		(*this)._error_empty_field();
 		return (false);
 	}
 	(*this)._first_name = first_name;
@@ -98,7 +109,6 @@ bool		Contact::set_last_name(const std::string &last_name)
 {
 	if (last_name.length() == 0)
 	{
-		(*this)._error_empty_field();
 		return (false);
 	}
 	(*this)._last_name = last_name;
@@ -109,99 +119,50 @@ bool		Contact::set_nickname(const std::string &nickname)
 {
 	if (nickname.length() == 0)
 	{
-		(*this)._error_empty_field();
 		return (false);
 	}
 	(*this)._nickname = nickname;
 	return (true);
 }
 
-bool		Contact::set_login(const std::string &login)
+void		Contact::set_login(const std::string &login)
 {
-	if (login.length() == 0)
-	{
-		(*this)._error_empty_field();
-		return (false);
-	}
 	(*this)._login = login;
-	return (true);
 }
 
-bool		Contact::set_postal_address(const std::string &postal_address)
+void		Contact::set_postal_address(const std::string &postal_address)
 {
-	if (postal_address.length() == 0)
-	{
-		(*this)._error_empty_field();
-		return (false);
-	}
 	(*this)._postal_address = postal_address;
-	return (true);
 }
 
-bool		Contact::set_email_address(const std::string &email_address)
+void		Contact::set_email_address(const std::string &email_address)
 {
-	if (email_address.length() == 0)
-	{
-		(*this)._error_empty_field();
-		return (false);
-	}
 	(*this)._email_address = email_address;
-	return (true);
 }
 
-bool		Contact::set_phone_number(const std::string &phone_number)
+void		Contact::set_phone_number(const std::string &phone_number)
 {
-	if (phone_number.length() == 0)
-	{
-		(*this)._error_empty_field();
-		return (false);
-	}
 	(*this)._phone_number = phone_number;
-	return (true);
 }
 
-bool		Contact::set_birthday_date(const std::string &birthday_date)
+void		Contact::set_birthday_date(const std::string &birthday_date)
 {
-	if (birthday_date.length() == 0)
-	{
-		(*this)._error_empty_field();
-		return (false);
-	}
 	(*this)._birthday_date = birthday_date;
-	return (true);
 }
 
-bool		Contact::set_favourite_meal(const std::string &favourite_meal)
+void		Contact::set_favourite_meal(const std::string &favourite_meal)
 {
-	if (favourite_meal.length() == 0)
-	{
-		(*this)._error_empty_field();
-		return (false);
-	}
 	(*this)._favourite_meal = favourite_meal;
-	return (true);
 }
 
-bool		Contact::set_underwear_color(const std::string &underwear_color)
+void		Contact::set_underwear_color(const std::string &underwear_color)
 {
-	if (underwear_color.length() == 0)
-	{
-		(*this)._error_empty_field();
-		return (false);
-	}
 	(*this)._underwear_color = underwear_color;
-	return (true);
 }
 
-bool		Contact::set_darkest_secret(const std::string &darkest_secret)
+void		Contact::set_darkest_secret(const std::string &darkest_secret)
 {
-	if (darkest_secret.length() == 0)
-	{
-		(*this)._error_empty_field();
-		return (false);
-	}
 	(*this)._darkest_secret = darkest_secret;
-	return (true);
 }
 
 /**
