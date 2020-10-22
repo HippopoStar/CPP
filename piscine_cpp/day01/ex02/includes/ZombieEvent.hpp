@@ -3,7 +3,6 @@
 
 # include <iostream>
 # include <string>
-# include <cstdlib>
 # include "Zombie.hpp"
 
 class	ZombieEvent
@@ -13,6 +12,7 @@ class	ZombieEvent
 		~ZombieEvent(void);
 
 		void	setZombieType(std::string const &zombie_type);
+		Zombie	*newZombie(void) const;
 		Zombie	*newZombie(std::string const &name) const;
 		/**
 		 * Reflexion concernant le type de retour de la fonction "randomChump" :
@@ -29,8 +29,6 @@ class	ZombieEvent
 
 	private:
 		std::string			_zombie_type;
-		static std::string const	_first_syllabs[30];
-		static std::string const	_last_syllabs[29];
 };
 
 #endif

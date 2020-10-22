@@ -5,7 +5,7 @@
 
 int		main(void)
 {
-	Zombie		stack_zombie("ZombieStack", "creeper");
+	Zombie		stack_zombie("creeper", "ZombieStack");
 	Zombie		*heap_zombie;
 	ZombieEvent	z_event;
 
