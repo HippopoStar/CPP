@@ -4,7 +4,7 @@
  * Constructor(s) & Destructor(s)
  */
 
-ZombieHorde::ZombieHorde(int const n) : _zombie_horde(new Zombie[n > 0 ? n : 1]), _zombie_horde_size(n)
+ZombieHorde::ZombieHorde(int const n) : _zombie_horde(new Zombie[n > 0 ? n : 1]), _zombie_horde_size(n > 0 ? n : 1)
 {
 }
 

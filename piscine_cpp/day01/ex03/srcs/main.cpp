@@ -5,9 +5,9 @@
 
 int		main(void)
 {
+	srand(time(NULL));
 	ZombieHorde	alliance(10);
 
-	srand(time(NULL));
 	alliance.announce();
 	return (0);
 }
