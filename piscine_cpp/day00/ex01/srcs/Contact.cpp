@@ -4,19 +4,8 @@
  * Constructor(s) & Destructor(s)
  */
 
-Contact::Contact(void)
+Contact::Contact(void) : _first_name(""), _last_name(""), _nickname("")
 {
-	(*this)._first_name = "";
-	(*this)._last_name = "";
-	(*this)._nickname = "";
-	(*this)._login = "";
-	(*this)._postal_address = "";
-	(*this)._email_address = "";
-	(*this)._phone_number = "";
-	(*this)._birthday_date = "";
-	(*this)._favourite_meal = "";
-	(*this)._underwear_color = "";
-	(*this)._darkest_secret = "";
 }
 
 Contact::~Contact(void)
@@ -37,7 +26,7 @@ bool		Contact::_check_empty_string(const std::string &s) const
 	return (true);
 }
 
-std::string	Contact::_query_field(const char *field, bool (Contact::*f)(const std::string&) const)
+std::string	Contact::_query_field(const char *field, bool (Contact::*f)(const std::string &) const)
 {
 	std::string	input;
 

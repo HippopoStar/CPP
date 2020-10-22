@@ -55,7 +55,7 @@ class	Contact
 
 
 		bool		_check_empty_string(const std::string &s) const;
-		std::string	_query_field(const char *field, bool (Contact::*f)(const std::string&) const);
+		std::string	_query_field(const char *field, bool (Contact::*f)(const std::string &) const);
 
 };
 
