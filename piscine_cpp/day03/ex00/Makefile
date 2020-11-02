@@ -13,16 +13,16 @@
 CFLAGS =	-Wall -Wextra -Werror
 CPPFLAGS =	-I./includes/
 
-HEAD = ./includes/Fixed.hpp
+HEAD = ./includes/FragTrap.hpp
 
 CC =		g++
 
-NAME = fixed_point
+NAME = frag_trap
 
 SRC_PATH = ./srcs
 
 SRC_NAME = main.cpp \
-		Fixed.cpp
+		FragTrap.cpp
 
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 

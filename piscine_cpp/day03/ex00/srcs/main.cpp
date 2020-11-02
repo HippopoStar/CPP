@@ -1,17 +1,16 @@
+#include <ctime>
+#include <cstdlib>
 #include <iostream>
-#include "Fixed.hpp"
+#include "FragTrap.hpp"
 
 int		main(void)
 {
-	Fixed	a;
-	Fixed	b(a);
-	Fixed	c;
+	FragTrap	frag_trap_01("Robot");
+	FragTrap	frag_trap_02("ShoesBox");
 
-	c = b;
+	std::cout << frag_trap_01 << std::endl;
+	std::cout << frag_trap_02 << std::endl;
 
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-
+	frag_trap_01.vault_hunter_dot_exe("ShoesBox");
 	return (0);
 }
