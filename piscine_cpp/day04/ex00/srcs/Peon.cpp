@@ -1,4 +1,4 @@
-#include "Victim.hpp"
+#include "Peon.hpp"
 
 /**
  * Non-member attribute(s) initialization
@@ -8,7 +8,7 @@
  * Constructor(s) & Destructor(s)
  */
 
-Peon::Peon(void) : Victim()
+Peon::Peon(void) : Victim("default")
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -39,6 +39,14 @@ Peon			&Peon::operator=(Peon const &rhs)
 	(*this)._name = rhs.getName();
 	return (*this);
 }
+
+/*
+**std::ostream		&operator<<(std::ostream &o, Peon const &rhs)
+**{
+**	o << (Victim)rhs;
+**	return (o);
+**}
+*/
 
 /**
  * Public method(s)

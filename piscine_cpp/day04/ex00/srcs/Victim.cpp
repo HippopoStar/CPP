@@ -26,7 +26,7 @@ Victim::Victim(Victim const &src)
 
 Victim::~Victim()
 {
-	std::cout << "The victim " << (*this).name << " died for no apparent reasons!" << std::endl;
+	std::cout << "The victim " << (*this)._name << " died for no apparent reasons!" << std::endl;
 }
 
 /**
@@ -42,7 +42,7 @@ Victim			&Victim::operator=(Victim const &rhs)
 
 std::ostream	&operator<<(std::ostream &o, Victim const &rhs)
 {
-	o << "I'm " << rhs.getName << " and I like otters!" << std::endl;
+	o << "I'm " << rhs.getName() << " and I like otters!" << std::endl;
 	return (o);
 }
 

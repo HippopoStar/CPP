@@ -26,7 +26,7 @@ Sorcerer::Sorcerer(Sorcerer const &src)
 
 Sorcerer::~Sorcerer()
 {
-	std::cout << (*this).name << ", " << (*this).title << ", is dead. Consequenses will never be the same!" << std::endl;
+	std::cout << (*this)._name << ", " << (*this)._title << ", is dead. Consequenses will never be the same!" << std::endl;
 }
 
 /**
@@ -43,7 +43,7 @@ Sorcerer	&Sorcerer::operator=(Sorcerer const &rhs)
 
 std::ostream	&operator<<(std::ostream &o, Sorcerer const &rhs)
 {
-	o << "I am " << rhs.getName << ", " << rhs.getTitle << ", and I like ponies!" << std::endl;
+	o << "I am " << rhs.getName() << ", " << rhs.getTitle() << ", and I like ponies!" << std::endl;
 	return (o);
 }
 

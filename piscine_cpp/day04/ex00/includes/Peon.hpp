@@ -5,7 +5,7 @@
 # include <string>
 # include "Victim.hpp"
 
-class	Peon : Victim
+class	Peon : public Victim
 {
 	public:
 		Peon(std::string const &name);
@@ -20,5 +20,9 @@ class	Peon : Victim
 		Peon(void);
 
 };
+
+/*
+**std::ostream	&operator<<(std::ostream &o, Peon const &rhs);
+*/
 
 #endif
