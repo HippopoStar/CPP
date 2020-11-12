@@ -48,6 +48,18 @@ FragTrap	&FragTrap::operator=(FragTrap const &rhs)
 	return (*this);
 }
 
+std::ostream	&operator<<(std::ostream &o, FragTrap const &rhs)
+{
+	o << "| Name: " << rhs.getName() << std::endl;
+	o << "| Level: " << rhs.getLevel() << std::endl;
+	o << "| Hit Points: " << rhs.getHitPoints() << std::endl;
+	o << "| Energy Points: " << rhs.getEnergyPoints() << std::endl;
+	o << "| Melee Attack Damage: " << rhs.getMeleeAttackDamage() << std::endl;
+	o << "| Ranged Attack Damage: " << rhs.getRangedAttackDamage() << std::endl;
+	o << "| Armor Damage Reduction: " << rhs.getArmorDamageReduction() << std::endl;
+	return (o);
+}
+
 /**
  * Public method(s)
  */
@@ -180,18 +192,3 @@ void		FragTrap::vault_hunter_dot_exe(std::string const &target)
  * Private method(s)
  */
 
-/**
- * '<<' operator surcharge
- */
-
-std::ostream	&operator<<(std::ostream &o, FragTrap const &rhs)
-{
-	std::cout << "| Name: " << rhs.getName() << std::endl;
-	std::cout << "| Level: " << rhs.getLevel() << std::endl;
-	std::cout << "| Hit Points: " << rhs.getHitPoints() << std::endl;
-	std::cout << "| Energy Points: " << rhs.getEnergyPoints() << std::endl;
-	std::cout << "| Melee Attack Damage: " << rhs.getMeleeAttackDamage() << std::endl;
-	std::cout << "| Ranged Attack Damage: " << rhs.getRangedAttackDamage() << std::endl;
-	std::cout << "| Armor Damage Reduction: " << rhs.getArmorDamageReduction() << std::endl;
-	return (o);
-}
