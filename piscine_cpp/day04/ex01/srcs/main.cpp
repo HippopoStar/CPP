@@ -31,5 +31,7 @@ int		main(void)
 	moi->attack(b);
 	std::cout << *moi;
 
+	//TODO: Attention RadScorpion est mort et a ete "delete" a ce point, et aucun feedback n'a permis d'en prendre connaissance
+
 	return (0);
 }

@@ -51,7 +51,7 @@ SuperMutant		&SuperMutant::operator=(SuperMutant const &rhs)
 
 void		SuperMutant::takeDamage(int amount)
 {
-	(*((Enemy *)this)).takeDamage(amount - 3);
+	Enemy::takeDamage(amount - 3);
 }
 
 /**

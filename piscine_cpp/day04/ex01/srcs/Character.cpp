@@ -8,7 +8,7 @@
  * Constructor(s) & Destructor(s)
  */
 
-Character::Character(void) : _name("default), _ap(0), _weapon(NULL)
+Character::Character(void) : _name("default"), _ap(0), _weapon(NULL)
 {
 	std::cout << "<Character> Default constructor called" << std::endl;
 }
@@ -51,8 +51,8 @@ std::ostream	&operator<<(std::ostream &o, Character const &rhs)
 	}
 	else
 	{
-		o << " and carries a " << rhs.getWeapon().getName();
-	{
+		o << " and carries a " << rhs.getWeapon()->getName();
+	}
 	o << std::endl;
 	return (o);
 }
@@ -66,12 +66,12 @@ std::string const	&Character::getName(void) const
 	return ((*this)._name);
 }
 
-int					Character::getAP(void) const
+int			Character::getAP(void) const
 {
 	return ((*this)._ap);
 }
 
-AWeapon const		*Character::getWeapon(void) const
+AWeapon 		*Character::getWeapon(void) const
 {
 	return ((*this)._weapon);
 }
@@ -85,7 +85,7 @@ void				Character::recoverAP(void)
 	else
 	{
 		(*this)._ap = (*this)._ap + 10;
-	{
+	}
 	std::cout << (*this)._name << " recovers 10 AP!" << std::endl;
 }
 
@@ -95,21 +95,21 @@ void				Character::attack(Enemy *enemy)
 	{
 		if (!(*this)._weapon)
 		{
-			(*this)._name << " wishes to attack but has no weapon!" << std::endl;
+			std::cout << (*this)._name << " wishes to attack but has no weapon!" << std::endl;
 		}
 		else
 		{
 			if ((*this)._ap < (*this)._weapon->getAPCost())
 			{
-				(*this)._name << " wishes to attack but has no more AP!" << std::endl;
+				std::cout << (*this)._name << " wishes to attack but has no more AP!" << std::endl;
 			}
 			else
 			{
 				std::cout << (*this)._name << " attacks " << enemy->getType() << " with a " << (*this)._weapon->getName() << std::endl;
 				(*this)._weapon->attack();
-				enemy.takeDamage((*this)._weapon->getDamage());
+				enemy->takeDamage((*this)._weapon->getDamage());
 				(*this)._ap = (*this)._ap - (*this)._weapon->getAPCost();
-				if (enemy.getHP() == 0)
+				if (enemy->getHP() == 0)
 				{
 					delete enemy; //TODO: ne va-t'on pas avoir un probleme etant donne le manque de feedback?
 				}

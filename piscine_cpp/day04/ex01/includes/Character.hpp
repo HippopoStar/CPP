@@ -3,7 +3,8 @@
 
 # include <iostream>
 # include <string>
-# include <AWeapon.hpp>
+# include "AWeapon.hpp"
+# include "Enemy.hpp"
 
 class	Character
 {
@@ -14,8 +15,8 @@ class	Character
 
 		Character			&operator=(Character const &rhs);
 		std::string const	&getName(void) const;
-		int					getAP(void) const;
-		AWeapon const		*getWeapon(void) const;
+		int			getAP(void) const;
+		AWeapon			*getWeapon(void) const;
 
 		void				recoverAP(void);
 		void				equip(AWeapon *weapon);

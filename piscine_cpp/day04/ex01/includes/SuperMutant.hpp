@@ -14,7 +14,7 @@ class	SuperMutant : public Enemy
 
 		SuperMutant		&operator=(SuperMutant const &rhs);
 
-		virtual void		takeDamage(void);
+		virtual void		takeDamage(int amount);
 
 };
 

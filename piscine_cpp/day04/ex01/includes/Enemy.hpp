@@ -21,8 +21,8 @@ class	Enemy
 		Enemy(void);
 
 	protected:
-		std::string		_type;
 		int				_hp;
+		std::string		_type;
 
 };
 

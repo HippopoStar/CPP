@@ -51,7 +51,7 @@ RadScorpion		&RadScorpion::operator=(RadScorpion const &rhs)
 
 void		RadScorpion::takeDamage(int amount)
 {
-	(*((Enemy *)this)).takeDamage(amount);
+	Enemy::takeDamage(amount);
 }
 
 /**
