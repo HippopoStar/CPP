@@ -90,14 +90,17 @@ int					Squad::push(ISpaceMarine *xxx)
 	if (!(xxx == NULL))
 	{
 		tmp = &((*this)._members);
-		while (!((*tmp) == NULL))
+		while (!((*tmp) == NULL || (*tmp) == xxx))
 		{
 			tmp = &((*tmp)->next);
 		}
-		(*tmp) = new t_squad_member;
-		(*tmp)->unit = xxx;
-		(*tmp)->next = NULL;
-		return (1);
+		if ((*tmp) == NULL)
+		{
+			(*tmp) = new t_squad_member;
+			(*tmp)->unit = xxx;
+			(*tmp)->next = NULL;
+			return (1);
+		}
 	}
 	return (0);
 }
