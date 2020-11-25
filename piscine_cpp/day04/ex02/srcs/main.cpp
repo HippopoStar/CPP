@@ -9,7 +9,7 @@
 int		main(void)
 {
 	ISpaceMarine	*bob = new TacticalMarine;
-	IspaceMarine	*jim = new AssaultTerminator;
+	ISpaceMarine	*jim = new AssaultTerminator;
 
 	ISquad			*vlc = new Squad;
 	vlc->push(bob);

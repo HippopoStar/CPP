@@ -21,7 +21,7 @@ HEAD = ./includes/ISquad.hpp \
 
 CC =		g++
 
-NAME = wasteland
+NAME = purify
 
 SRC_PATH = ./srcs
 

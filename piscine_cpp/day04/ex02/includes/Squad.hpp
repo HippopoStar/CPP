@@ -23,7 +23,7 @@ class	Squad : public ISquad
 		virtual ISpaceMarine	*getUnit(int n) const;
 		virtual int				push(ISpaceMarine *xxx);
 
-		t_squad_member const	*getMembers(void);
+		t_squad_member		*getMembers(void) const;
 
 	private:
 

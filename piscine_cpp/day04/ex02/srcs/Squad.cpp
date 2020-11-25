@@ -19,10 +19,10 @@ Squad::Squad(Squad const &src)
 	*this = src;
 }
 
-Squad::~Squad()
+Squad::~Squad(void)
 {
 	std::cout << "<Squad> Destructor called" << std::endl;
-	(*this).purge_members();
+	(*this)._purge_members();
 }
 
 /**
@@ -80,24 +80,29 @@ ISpaceMarine			*Squad::getUnit(int n) const
 		i++;
 		tmp = tmp->next;
 	}
-	return (tmp);
+	return (tmp->unit);
 }
 
-void					Squad::push(ISpaceMarine *xxx)
+int					Squad::push(ISpaceMarine *xxx)
 {
 	t_squad_member	**tmp;
 
-	tmp = &((*this)._members);
-	while (!((*tmp) == NULL))
+	if (!(xxx == NULL))
 	{
-		tmp = &((*tmp)->next);
+		tmp = &((*this)._members);
+		while (!((*tmp) == NULL))
+		{
+			tmp = &((*tmp)->next);
+		}
+		(*tmp) = new t_squad_member;
+		(*tmp)->unit = xxx;
+		(*tmp)->next = NULL;
+		return (1);
 	}
-	(*tmp) = new t_squad_member;
-	(*tmp)->unit = xxx;
-	(*tmp)->next = NULL;
+	return (0);
 }
 
-t_squad_member const	*Squad::getMembers(void) const
+t_squad_member			*Squad::getMembers(void) const
 {
 	return ((*this)._members);
 }
@@ -112,7 +117,8 @@ void			Squad::_purge_members(void)
 
 	while (!((tmp = (*this)._members) == NULL))
 	{
-		(*this).members = ((*this)._members)->next;
+		(*this)._members = ((*this)._members)->next;
+		delete tmp->unit;
 		delete tmp;
 	}
 }
@@ -125,7 +131,7 @@ void			Squad::_copy_members(Squad const &rhs)
 	tmp = rhs.getMembers();
 	while (!(tmp == NULL))
 	{
-		this.push((tmp->unit).clone());
+		(*this).push((*(tmp->unit)).clone());
 		tmp = tmp->next;
 	}
 }

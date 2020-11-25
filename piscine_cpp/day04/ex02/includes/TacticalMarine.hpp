@@ -16,6 +16,7 @@ class	TacticalMarine : public ISpaceMarine
 		virtual ISpaceMarine	*clone(void) const;
 		virtual void			battleCry(void) const;
 		virtual void			rangedAttack(void) const;
+		virtual void			meleeAttack(void) const;
 
 };
 

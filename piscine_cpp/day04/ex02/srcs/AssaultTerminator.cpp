@@ -38,6 +38,7 @@ AssaultTerminator		&AssaultTerminator::operator=(AssaultTerminator const &rhs)
 std::ostream	&operator<<(std::ostream &o, AssaultTerminator const &rhs)
 {
 	o << "<AssaultTerminator> \"<<\" operator called" << std::endl;
+	(void)rhs;
 	return (o);
 }
 

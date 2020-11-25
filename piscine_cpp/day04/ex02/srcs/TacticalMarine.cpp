@@ -38,6 +38,7 @@ TacticalMarine		&TacticalMarine::operator=(TacticalMarine const &rhs)
 std::ostream	&operator<<(std::ostream &o, TacticalMarine const &rhs)
 {
 	o << "<TacticalMarine> \"<<\" operator called" << std::endl;
+	(void)rhs;
 	return (o);
 }
 
