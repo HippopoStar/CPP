@@ -8,12 +8,12 @@
  * Constructor(s) & Destructor(s)
  */
 
-Cure::Cure(void) : _type("cure"), _xp(0)
+Cure::Cure(void) : AMateria("cure")
 {
 	std::cout << "<Cure> Default constructor called" << std::endl;
 }
 
-Cure::Cure(Cure const &src)
+Cure::Cure(Cure const &src) : AMateria("cure")
 {
 	std::cout << "<Cure> Copy constructor called" << std::endl;
 	*this = src;
@@ -31,15 +31,14 @@ Cure::~Cure(void)
 Cure			&Cure::operator=(Cure const &rhs)
 {
 	std::cout << "<Cure> Assignement operator called" << std::endl;
-	(*this)._xp = rhs.getXP();
+	(void)rhs;
 	return (*this);
 }
 
 std::ostream	&operator<<(std::ostream &o, Cure const &rhs)
 {
 	o << "<Cure> operator \"<<\" called" << std::endl;
-	o << "| Type: " << (*this)._type << std::endl;
-	o << "| XP: " << (*this)._xp << std::endl;
+	(void)rhs;
 	return (o);
 }
 
@@ -59,7 +58,7 @@ std::ostream	&operator<<(std::ostream &o, Cure const &rhs)
 **}
 */
 
-AMateria			*clone(void) const
+AMateria			*Cure::clone(void) const
 {
 	AMateria	*clone;
 
@@ -70,7 +69,7 @@ AMateria			*clone(void) const
 void				Cure::use(ICharacter &target)
 {
 	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
-	(*this)._xp = (*this)._xp + 10;
+	AMateria::use(target);
 }
 
 /**

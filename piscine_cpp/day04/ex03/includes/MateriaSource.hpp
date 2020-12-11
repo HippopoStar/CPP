@@ -3,16 +3,18 @@
 
 # include <iostream>
 # include <string>
-# include "IMateria.hpp"
+# include "IMateriaSource.hpp"
 # include "AMateria.hpp"
 
 class	MateriaSource : public IMateriaSource
 {
 	public:
 		MateriaSource(void);
+		MateriaSource(MateriaSource const &rhs);
 		virtual ~MateriaSource(void);
 
-		AMateria			*[4]getList(void) const;
+		MateriaSource		&operator=(MateriaSource const &rhs);
+		AMateria			**getList(void) const;
 		virtual void		learnMateria(AMateria *m);
 		virtual AMateria	*createMateria(std::string const &type);
 

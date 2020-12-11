@@ -13,6 +13,11 @@ AMateria::AMateria(void) : _type("default"), _xp(0)
 	std::cout << "<AMateria> Default constructor called" << std::endl;
 }
 
+AMateria::AMateria(std::string  const &type) : _type(type), _xp(0)
+{
+	std::cout << "<AMateria> Constructor called with parameter [\"" << type << "\"]" << std::endl;
+}
+
 AMateria::AMateria(AMateria const &src)
 {
 	std::cout << "<AMateria> Copy constructor called" << std::endl;
@@ -60,7 +65,9 @@ unsigned int		AMateria::getXP(void) const
 
 void				AMateria::use(ICharacter &target)
 {
-	std::cout << "<AMateria> " << (*this)._type << " used on " << target.getName() << "!" << std::endl;
+	std::cout << "<AMateria> " << (*this)._type << " used!" << std::endl;
+	(*this)._xp = (*this)._xp + 10;
+	(void)target;
 }
 
 /**

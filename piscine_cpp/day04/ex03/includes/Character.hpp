@@ -10,10 +10,12 @@ class	Character : public ICharacter
 {
 	public:
 		Character(std::string const &name);
+		Character(Character const &src);
 		virtual ~Character(void);
 
+		Character		&operator=(Character const &rhs);
 		virtual std::string const	&getName(void) const;
-		AMateria					*[4]getInventory(void) const;
+		AMateria				**getInventory(void) const;
 		virtual void				equip(AMateria *m);
 		virtual void				unequip(int idx);
 		virtual void				use(int idx, ICharacter &target);
@@ -21,7 +23,7 @@ class	Character : public ICharacter
 	private:
 		Character(void);
 
-		std::string const	_name;
+		std::string		_name;
 		AMateria			*_inventory[4];
 
 };

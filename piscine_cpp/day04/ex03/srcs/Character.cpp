@@ -8,9 +8,14 @@
  * Constructor(s) & Destructor(s)
  */
 
-Character::Character(void) : _name("default"), _inventory({ NULL, NULL, NULL, NULL })
+Character::Character(void) : _name("default"), _inventory{ NULL, NULL, NULL, NULL }
 {
 	std::cout << "<Character> Default constructor called" << std::endl;
+}
+
+Character::Character(std::string const &name) : _name(name), _inventory{ NULL, NULL, NULL, NULL }
+{
+	std::cout << "<Character> Constructor called with parameter [\"" << name << "\"]" << std::endl;
 }
 
 Character::Character(Character const &src)
@@ -44,10 +49,10 @@ std::ostream	&operator<<(std::ostream &o, Character const &rhs)
 	o << "<Character> operator \"<<\" called" << std::endl;
 	o << "| Name: " << rhs.getName() << std::endl;
 	o << "| Inventory:" << std::endl;
-	o << "|\t" << rhs.getInventory()[0].getType() << std::endl;
-	o << "|\t" << rhs.getInventory()[1].getType() << std::endl;
-	o << "|\t" << rhs.getInventory()[2].getType() << std::endl;
-	o << "|\t" << rhs.getInventory()[3].getType() << std::endl;
+	o << "|\t" << (*(rhs.getInventory()[0])).getType() << std::endl;
+	o << "|\t" << (*(rhs.getInventory()[1])).getType() << std::endl;
+	o << "|\t" << (*(rhs.getInventory()[2])).getType() << std::endl;
+	o << "|\t" << (*(rhs.getInventory()[3])).getType() << std::endl;
 	return (o);
 }
 
@@ -60,12 +65,12 @@ std::string const	&Character::getName(void) const
 	return ((*this)._name);
 }
 
-AMateria			*[4]Character::getInventory(void) const
+AMateria			**Character::getInventory(void) const
 {
-	return ((*this)._inventory);
+	return ((AMateria **)((*this)._inventory));
 }
 
-void				equip(AMateria *m)
+void				Character::equip(AMateria *m)
 {
 	int		i;
 
@@ -80,7 +85,7 @@ void				equip(AMateria *m)
 	}
 }
 
-void				unequip(int idx)
+void				Character::unequip(int idx)
 {
 	if (0 <= idx && idx < 4)
 	{
@@ -88,11 +93,11 @@ void				unequip(int idx)
 	}
 }
 
-void				use(int idx, ICharacter &target)
+void				Character::use(int idx, ICharacter &target)
 {
 	if (0 <= idx && idx < 4 && !((*this)._inventory[idx] == NULL))
 	{
-		(*this)._inventory[idx].use(target);
+		(*((*this)._inventory[idx])).use(target);
 	}
 }
 

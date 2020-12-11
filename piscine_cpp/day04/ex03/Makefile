@@ -18,7 +18,7 @@ HEAD = ./includes/AMateria.hpp \
 		./includes/Cure.hpp \
 		./includes/Character.hpp \
 		./includes/MateriaSource.hpp \
-		./includes/Icharacter.hpp \
+		./includes/ICharacter.hpp \
 		./includes/IMateriaSource.hpp
 
 CC =		g++
