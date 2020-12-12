@@ -107,6 +107,27 @@ void			Bureaucrat::decrementGrade(void)
 	}
 }
 
+void			Bureaucrat::signForm(Form const &f) const
+{
+	if (f.getRequieredGrade() < (*this)._grade || f.getIsSigned() == true)
+	{
+		std::cout << "Bureaucrat <" << (*this)._name << "> can't sign form <" << f.getName() << "> because ";
+		if (f.getRequieredGrade() < (*this)._grade)
+		{
+			std::cout << "of insufficient grade" << std::endl;
+			throw Form::GradeTooLowException();
+		}
+		else
+		{
+			std::cout << "it is signed already" <<std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "Bureaucrat <" << (*this)._name << "> signs form <" << f.getName() << ">" << std::endl;
+	}
+}
+
 /**
  * Private method(s)
  */
