@@ -55,7 +55,8 @@ int		main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	shrubbery_form->execute(jim);
+	jim.executeForm(*shrubbery_form);
+	//shrubbery_form->execute(jim);
 	delete shrubbery_form;
 
 	return (0);

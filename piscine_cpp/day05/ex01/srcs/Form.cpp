@@ -92,11 +92,12 @@ int			Form::getRequieredGrade(void) const
 
 void			Form::beSigned(Bureaucrat const &b)
 {
-	b.signForm(*this);
+	//b.signForm(*this); // Attention aux appels mutuels infinis
 	if (b.getGrade() <= (*this)._requiered_grade)
 	{
 		(*this)._is_signed = true;
 	}
+	std::cout << "Form \"" << (*this).getName() << "\" signed by " << b.getName() << std::endl;
 }
 
 /**

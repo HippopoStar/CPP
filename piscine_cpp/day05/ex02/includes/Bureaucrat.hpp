@@ -33,7 +33,7 @@ class	Bureaucrat
 		int			getGrade(void) const;
 		void			incrementGrade(void) /*throw(GradeTooHighException)*/;
 		void			decrementGrade(void) /*throw(GradeTooLowException)*/;
-		void			signForm(Form const &f) const;
+		void			signForm(Form &f) const;
 		void			executeForm(Form const &f) const /*throw(GradeTooLowException*/;
 
 	private:

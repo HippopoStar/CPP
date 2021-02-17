@@ -31,7 +31,8 @@ int		main(void)
 
 	try
 	{
-		f.beSigned(jim);
+		//f.beSigned(jim);
+		jim.signForm(f);
 	}
 	catch (std::exception &e)
 	{
