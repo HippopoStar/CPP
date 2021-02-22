@@ -7,3 +7,6 @@ Portee "protected" - day04/ex00 - _SYNTAXE_: `protected:`
 [OpenClassRooms - Heritage & destructeur virtuel](https://openclassrooms/fr/courses/1894236-programmez-avec-le-langage-c/1898632-mettez-en-oeuvre-le-polymorphisme#/id/r-1908400) - _SYNTAXE_: `virtual ~ClasseMere(void)`  
 [OpenClassRooms - Les fonctions virtuelles pures (notamment les classes abstraites)](https://openclassrooms/fr/courses/1894236-programmez-avec-le-langage-c/1898632-mettez-en-oeuvre-le-polymorphisme#/id/r-1898631) - _SYNTAXE_: `virtual <type> maFonction(void) = 0`  
 
+__ostringstream__ - day01 - ex05  
+\<fstream\> - day02/ex07  
+
