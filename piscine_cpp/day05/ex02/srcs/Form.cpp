@@ -100,11 +100,16 @@ void			Form::beSigned(Bureaucrat const &b)
 	std::cout << "<" << (*this).getName() << "> signed" << std::endl;
 }
 
-void			Form::execute(Bureaucrat const &executor) const
-{
-	(void)executor;
-	std::cout << "<" << (*this).getName() << "> executed" << std::endl;
-}
+/**
+ * 'Form' doit etre une classe abstraite
+ */
+/*
+**void			Form::execute(Bureaucrat const &executor) const
+**{
+**	(void)executor;
+**	std::cout << "<" << (*this).getName() << "> executed" << std::endl;
+**}
+*/
 
 /**
  * Private method(s)

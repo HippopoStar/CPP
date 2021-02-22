@@ -33,7 +33,7 @@ class	Form
 		std::string const	&getName(void) const;
 		int			getRequieredGrade(void) const;
 		void			beSigned(Bureaucrat const &b);
-		virtual void		execute(Bureaucrat const &executor) const;
+		virtual void		execute(Bureaucrat const &executor) const = 0;
 
 	private:
 		Form(void);

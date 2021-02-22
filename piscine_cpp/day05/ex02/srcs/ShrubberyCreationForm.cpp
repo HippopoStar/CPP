@@ -8,7 +8,7 @@
  * Constructor(s) & Destructor(s)
  */
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : Form("ShruberryCreationForm", 150), _target("default"), _execution_grade(150)
+ShrubberyCreationForm::ShrubberyCreationForm(void) : Form("ShrubberyCreationForm", 150), _target("default"), _execution_grade(150)
 {
 	std::cout << "<ShrubberyCreationForm> Default constructor called" << std::endl;
 }
