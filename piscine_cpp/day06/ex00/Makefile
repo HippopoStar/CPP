@@ -10,12 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-std=c++98 -Wall -Wextra -Werror
 CPPFLAGS =	-I./includes/
 
 HEAD = ./includes/ScalarConverter.hpp
 
-CC =		g++
+CC =		clang++
 
 NAME = convert
 

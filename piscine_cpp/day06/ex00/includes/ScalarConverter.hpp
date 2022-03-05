@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include <sstream>
 # include <cctype>
 
 class	ScalarConverter
@@ -23,24 +24,44 @@ class	ScalarConverter
 	public:
 
 		ScalarConverter(std::string const &litteral);
-		ScalarConverter(ScalarConverter const &src);
 		~ScalarConverter(void);
 
 		std::string const	&getLitteral(void) const;
 
-		bool is_character(void) const;
-		bool is_integer(void) const;
-		bool is_float(void) const;
-		bool is_double(void) const;
+		void	display_scalar_type(std::ostream &o) const;
+		void	display_conversion(std::ostream &o) const;
+
+		static bool	is_character(std::string const &litteral);
+		static bool	is_integer(std::string const &litteral);
+		static bool	is_float(std::string const &litteral);
+		static bool	is_double(std::string const &litteral);
+
+		static bool	convert(std::string const &litteral, char &c);
+		static bool	convert(std::string const &litteral, int &n);
+		static bool	convert(std::string const &litteral, float &f);
+		static bool	convert(std::string const &litteral, double &d);
 
 	private:
+
 		ScalarConverter(void);
+		ScalarConverter(ScalarConverter const &src);
 		ScalarConverter		&operator=(ScalarConverter const &rhs);
 
-		bool is_floating_point_notation(bool expect_trailing_f) const;
+		enum ScalarTypes:	std::uint8_t
+		{
+			TYPE_UNKNOWN,
+			TYPE_CHAR,
+			TYPE_INT,
+			TYPE_FLOAT,
+			TYPE_DOUBLE
+		};
 
+		ScalarTypes	getScalarType(void) const;
+
+		static bool	is_floating_point_notation(std::string const &litteral, bool expect_trailing_f);
 
 		std::string const		_litteral;
+		ScalarTypes				_scalar_type;
 
 };
 
