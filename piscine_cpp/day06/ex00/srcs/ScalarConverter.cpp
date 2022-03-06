@@ -99,6 +99,17 @@ ScalarConverter::ScalarTypes	ScalarConverter::getScalarType(void) const
 	return ((*this)._scalar_type);
 }
 
+std::string const	ScalarConverter::display_scalar_type(std::string const &litteral)
+{
+	std::ostringstream	oss;
+	oss << std::boolalpha;
+	oss << "is_character: " << ((is_character(litteral)) ? true : false) << std::endl;
+	oss << "is_integer: " << ((is_integer(litteral)) ? true : false) << std::endl;
+	oss << "is_float: " << ((is_float(litteral)) ? true : false) << std::endl;
+	oss << "is_double: " << ((is_double(litteral)) ? true : false) << std::endl;
+	return (oss.str());
+}
+
 void	ScalarConverter::display_scalar_type(std::ostream &o) const
 {
 	std::ostringstream	oss;
@@ -112,7 +123,15 @@ void	ScalarConverter::display_scalar_type(std::ostream &o) const
 
 void	ScalarConverter::display_conversion(std::ostream &o) const
 {
-	(void)o;
+	char	c;
+	int		n;
+	float	f;
+	double	d;
+
+	o << "char: " << ((convert((*this)._litteral, c)) ? std::string(&c, 1) : "Non displayable") << std::endl;
+	o << "int: " << ((convert((*this)._litteral, n)) ? std::to_string(n) : "impossible") << std::endl;
+	o << "float: " << ((convert((*this)._litteral, f)) ? std::to_string(f) : "impossible") << std::endl;
+	o << "double: " << ((convert((*this)._litteral, d)) ? std::to_string(d) : "impossible") << std::endl;
 }
 
 /*
@@ -137,6 +156,10 @@ bool	ScalarConverter::is_integer(std::string const &litteral)
 
 	if (litteral.length() > 0)
 	{
+		if (('+' == litteral.at(0) || '-' == litteral.at(0)) && litteral.length() > 1)
+		{
+			i++;
+		}
 		while (i < litteral.length()
 			&& std::isdigit(litteral.at(i)))
 		{
@@ -162,29 +185,129 @@ bool	ScalarConverter::is_double(std::string const &litteral)
 
 bool	ScalarConverter::convert(std::string const &litteral, char &c)
 {
-	(void)litteral;
-	(void)c;
+	if (is_character(litteral))
+	{
+		c = litteral.at(1);
+		return (true);
+	}
+	else
+	{
+		int		n;
+		float	f;
+		double	d;
+
+		if (is_integer(litteral) && convert(litteral, n) && std::isprint(n))
+		{
+			c = static_cast<char>(n);
+			return (true);
+		}
+		else if (is_float(litteral) && convert(litteral, f) && std::isprint(static_cast<int>(f)))
+		{
+			c = static_cast<char>(f);
+			return (true);
+		}
+		else if (is_double(litteral) && convert(litteral, d) && std::isprint(static_cast<int>(d)))
+		{
+			c = static_cast<char>(f);
+			return (true);
+		}
+	}
 	return (false);
 }
 
 bool	ScalarConverter::convert(std::string const &litteral, int &n)
 {
-	(void)litteral;
-	(void)n;
+	if (is_integer(litteral))
+	{
+		n = std::stoi(litteral);
+		return (true);
+	}
+	else
+	{
+		char	c;
+		float	f;
+		double	d;
+
+		if (is_character(litteral) && convert(litteral, c))
+		{
+			n = static_cast<int>(c);
+			return (true);
+		}
+		else if (is_float(litteral) && convert(litteral, f))
+		{
+			n = static_cast<int>(f);
+			return (true);
+		}
+		else if (is_double(litteral) && convert(litteral, d))
+		{
+			n = static_cast<int>(d);
+			return (true);
+		}
+	}
 	return (false);
 }
 
 bool	ScalarConverter::convert(std::string const &litteral, float &f)
 {
-	(void)litteral;
-	(void)f;
+	if (is_float(litteral))
+	{
+		f = std::stof(litteral);
+		return (true);
+	}
+	else
+	{
+		char	c;
+		int		n;
+		double	d;
+
+		if (is_character(litteral) && convert(litteral, c))
+		{
+			f = static_cast<float>(c);
+			return (true);
+		}
+		else if (is_integer(litteral) && convert(litteral, n))
+		{
+			f = static_cast<float>(n);
+			return (true);
+		}
+		else if (is_double(litteral) && convert(litteral, d))
+		{
+			f = static_cast<float>(d);
+			return (true);
+		}
+	}
 	return (false);
 }
 
 bool	ScalarConverter::convert(std::string const &litteral, double &d)
 {
-	(void)litteral;
-	(void)d;
+	if (is_double(litteral))
+	{
+		d = std::stod(litteral);
+		return (true);
+	}
+	else
+	{
+		char	c;
+		int		n;
+		float	f;
+
+		if (is_character(litteral) && convert(litteral, c))
+		{
+			d = static_cast<double>(c);
+			return (true);
+		}
+		else if (is_integer(litteral) && convert(litteral, n))
+		{
+			d = static_cast<double>(n);
+			return (true);
+		}
+		else if (is_float(litteral) && convert(litteral, f))
+		{
+			d = static_cast<double>(f);
+			return (true);
+		}
+	}
 	return (false);
 }
 
@@ -212,12 +335,11 @@ bool	ScalarConverter::is_floating_point_notation(std::string const &litteral, bo
 			i++;
 		}
 		if (!std::string("nan").compare(expect_trailing_f ? litteral.substr(0, number_length) : litteral)
-			|| !std::string("-inf").compare(expect_trailing_f ? litteral.substr(0, number_length) : litteral)
-			|| !std::string("+inf").compare(expect_trailing_f ? litteral.substr(0, number_length) : litteral))
+			|| !std::string("inf").compare(expect_trailing_f ? litteral.substr(i, number_length) : litteral))
 		{
 			return (true);
 		}
-		else if (std::isdigit(litteral.at(i)))
+		else if (i < number_length && std::isdigit(litteral.at(i)))
 		{
 			while (i < number_length)
 			{

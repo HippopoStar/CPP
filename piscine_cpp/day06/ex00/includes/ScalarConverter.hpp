@@ -31,6 +31,8 @@ class	ScalarConverter
 		void	display_scalar_type(std::ostream &o) const;
 		void	display_conversion(std::ostream &o) const;
 
+		static std::string const	display_scalar_type(std::string const &litteral);
+
 		static bool	is_character(std::string const &litteral);
 		static bool	is_integer(std::string const &litteral);
 		static bool	is_float(std::string const &litteral);
