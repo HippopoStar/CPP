@@ -208,7 +208,7 @@ bool	ScalarConverter::convert(std::string const &litteral, char &c)
 		}
 		else if (is_double(litteral) && convert(litteral, d) && std::isprint(static_cast<int>(d)))
 		{
-			c = static_cast<char>(f);
+			c = static_cast<char>(d);
 			return (true);
 		}
 	}
